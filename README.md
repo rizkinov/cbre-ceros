@@ -35,6 +35,23 @@ figma/emerald-helpers.js  Figma Plugin API helpers bound to the Emerald brand fi
 figma/export_tools.py     Builds the PNG/JPG/section/PDF exports from Figma screenshots
 ```
 
+## Export index
+
+Attach the main image(s) **plus the state images** when prompting Ceros AI; the PDF holds everything in reading order.
+
+| # | Template | Main reference | Interaction states | PDF |
+|---|---|---|---|---|
+| 01 | [Quarterly Market Outlook](exports/01-market-outlook/) | `01-market-outlook_desktop.jpg` | industrial logistics tab<br>outlook accordion open<br>retail tab<br>residential tab | `01-market-outlook.pdf` |
+| 02 | [Property Showcase](exports/02-property-showcase/) | `02-property-showcase_desktop.jpg` | hotspot popup typical office floor<br>gallery lightbox slide 2<br>enquire modal open | `02-property-showcase.pdf` |
+| 03 | [Office Space Calculator](exports/03-office-space-calculator/) | `03-office-space-calculator_desktop.jpg` | results updated<br>advisor modal<br>mobile calculator 390 | `03-office-space-calculator.pdf` |
+| 04 | [Workplace Strategy Quiz](exports/04-workplace-strategy-quiz/) | `04-workplace-strategy-quiz_desktop.jpg` | question 3 of 7<br>result collaborative hub<br>all four profiles | `04-workplace-strategy-quiz.pdf` |
+| 05 | [Client Case Study](exports/05-client-case-study/) | `05-client-case-study_desktop.jpg` | before after slider dragging<br>story tab approach<br>story tab results<br>before after tab after<br>related card hover | `05-client-case-study.pdf` |
+| 06 | [Services Explorer](exports/06-services-explorer/) | `06-services-explorer_desktop.jpg` | capital markets modal<br>who we serve investors tab<br>project management modal | `06-services-explorer.pdf` |
+| 07 | [Event Microsite](exports/07-event-microsite/) | `07-event-microsite_desktop.jpg` | speaker flip card bio<br>agenda panel 1 expanded<br>add to calendar modal | `07-event-microsite.pdf` |
+| 08 | [ESG & Sustainability Snapshot](exports/08-esg-snapshot/) | `08-esg-snapshot_desktop.jpg` | net zero journey 2030 selected<br>approach social tab<br>approach governance tab<br>certification popup<br>methodology footnote 2 open | `08-esg-snapshot.pdf` |
+| 09 | [Client Pitch Presentation](exports/09-client-pitch-presentation/) | 9 slides (`…_slide-01-cover.jpg` … `…_slide-09-next-steps.jpg`) | team flip card bio<br>approach negotiation selected<br>track record case study 2 | `09-client-pitch-presentation.pdf` |
+| 10 | [Investment Opportunity Teaser](exports/10-investment-teaser/) | `10-investment-teaser_desktop.jpg` | site plan hotspot 1 popup<br>register interest nda modal<br>sale process step 4 expanded | `10-investment-teaser.pdf` |
+
 ## How to build a template in Ceros
 
 1. Open **admin.ceros.com → CBRE Singapore**. In the "What will you build today?" box set **Brand Kit = CBRE Test** and the folder to **CBRE Singapore**.
@@ -64,3 +81,13 @@ Every photo in the designs is a **Color Glaze placeholder with a chip naming the
 ## Brand system used in Figma (Emerald)
 
 Financier Display for editorial headlines, Calibre for UI/body and Calibre Light for statistics; colours bound to the file's `$social` variables (CBRE Green `#003F2D`, Accent Green `#17E88F` as the single highlight, Sage/Celadon tints, Wheat for events only); the instanced CBRE logo; Line of Sight rules; Color Glaze as photo placeholders; square corners and an 8-pt spacing grid.
+
+## Design notes and known deviations
+
+- **Spec vs design:** where they differ, the **spec's behaviour wins**. The designs show some states for visual clarity only:
+  - The enquiry form in 02 (Enquire modal) and the lead form in 03 (Speak to an advisor) are illustrative. The specs link those buttons to `https://www.cbre.com.sg/contact-us`.
+  - 03 shows the first "How we calculate" accordion item open; the live build starts with all items closed.
+  - Accordions that the specs say start fully collapsed (07 FAQs, 08 Methodology) are drawn closed; their open state is in a state frame.
+- **Image slots inside unopened states** (e.g. other tabs and pop-ups) are listed in each spec's image table even when not drawn. Small circular headshots carry their Adobe Stock query as a caption under the photo, not on the photo.
+- 02's Explore placeholder has a faint schematic tower for hotspot positioning. Remove it once the real cutaway image is dropped in.
+- 09 uses `NN / 09` slide numbering in the design; the spec allows `1 / 9`. Either is fine.
