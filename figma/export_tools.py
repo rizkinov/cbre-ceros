@@ -28,6 +28,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MIN_SLICE = 360  # px; sections shorter than this are merged
 
 
+def load(path, bg=(255, 255, 255, 255)):
+    """Open a screenshot and flatten it onto white: section frames without their own fill export transparent."""
+    im = Image.open(path).convert('RGBA')
+    base = Image.new('RGBA', im.size, bg)
+    return Image.alpha_composite(base, im)
+
+
 def slug(s):
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')[:48]
 
@@ -64,14 +71,14 @@ def main(manifest_path):
     pdf_pages = []
     for p in m['pages']:
         if p.get('parts'):  # very tall pages: per-section PNGs stitched in order (Figma drops >~8k px screenshots)
-            parts = [Image.open(x['png']).convert('RGBA') for x in p['parts']]
+            parts = [load(x['png']) for x in p['parts']]
             img = Image.new('RGBA', (max(x.width for x in parts), sum(x.height for x in parts)), (255, 255, 255, 255))
             y = 0; secs = []
             for x, meta in zip(parts, p['parts']):
                 img.paste(x, (0, y)); secs.append({'name': meta['name'], 'y': y, 'h': x.height}); y += x.height
             p = dict(p, sections=secs)
         else:
-            img = Image.open(p['png']).convert('RGBA')
+            img = load(p['png'])
         save_pair(img, os.path.join(out_dir, f"{base}_{p['label']}"))
         secs = p.get('sections')
         if secs:
@@ -85,7 +92,7 @@ def main(manifest_path):
         else:
             pdf_pages.append(img.convert('RGB'))
     for st in m.get('states', []):
-        img = Image.open(st['png']).convert('RGBA')
+        img = load(st['png'])
         save_pair(img, os.path.join(out_dir, f"{base}_{st['label']}"))
         pdf_pages.append(img.convert('RGB'))
     if pdf_pages:
