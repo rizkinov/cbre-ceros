@@ -27,15 +27,15 @@ Create a responsive single-page client case study for a real estate services fir
 
 Sections, in order:
 
-1. Hero: office image placeholder; eyebrow "Client case study | Workplace consolidation"; client line "A global technology company | Singapore"; headline "Three offices into one: 22% less space, S$2.4M saved a year"; subhead "How CBRE brought 1,150 people into one hybrid-ready headquarters, with the fit-out delivered in 14 weeks."; buttons "See the results" (scrolls to section 4) and "Contact our team".
+1. Hero: office image placeholder; eyebrow "Client case study | Workplace consolidation"; client line "A global technology company | Singapore"; headline "Three offices into one: 22% less space, S$2.4M saved a year"; subhead "How CBRE brought 1,150 people into one hybrid-ready headquarters, with the fit-out delivered in 14 weeks."; buttons "See the results" (scrolls to section 4) and "Contact our team" (https://www.cbre.com.sg/contact-us).
 
-2. At a glance: five-item strip (label above value): Sector – Technology | Location – Singapore CBD | Size – 96,700 sq ft (from 124,000 sq ft) | Services – Workplace strategy, tenant representation, project management, ESG | Timeline – 11 months to move-in.
+2. At a glance: five-item strip (label above value): Sector – Technology | Location – Singapore CBD | Size – 96,700 sq ft (from 124,000 sq ft) | Services – Tenant representation, project management, ESG, facilities management | Timeline – 11 months to move-in.
 
-3. The story: tabs "Challenge", "Approach", "Results"; each has a heading, short paragraph, three bullets and an image placeholder. I will send the copy next.
+3. The story: tabs "Challenge", "Approach", "Results"; each with a heading, paragraph, three bullets and an image placeholder. I will send the copy next.
 
-4. Results in numbers: four counters that count up on scroll: 22% less office space | S$2.4M annual occupancy cost savings | 14 weeks fit-out, on time | 89% staff satisfaction; plus a methodology note.
+4. Results in numbers: four counters that count up on scroll: 22% less office space | S$2.4M annual occupancy cost savings | 14 weeks fit-out | 89% staff satisfaction; plus a methodology note.
 
-5. Before and after: image comparison slider with a draggable divider, labels "Before"/"After" and captions. Fallback: two tabs "Before"/"After".
+5. Before and after: image comparison slider with a draggable divider, labels and captions. Fallback: two tabs "Before"/"After".
 
 6. Project timeline: six steps (dates, title, one line): Discover; Search & negotiate; Design & approvals; Build; Move; Settle & measure.
 
@@ -49,7 +49,7 @@ Sections, in order:
 
 11. Footer: "[Disclaimer placeholder: insert the approved CBRE Singapore disclaimer.]" and the visible note "Sample content for template purposes only — replace before publishing."
 
-On mobile, stack everything in one column and show the timeline vertically.
+On mobile, use one column and a vertical timeline.
 ```
 
 ## Expected structure
@@ -76,7 +76,7 @@ Paste these one at a time in the AI chat after the first generation. Skip any th
 **1. Story tabs copy**
 
 ```text
-Set "The story" section to this exact copy. Add the intro line "From three ageing offices to one workplace built around how people really work." under the section heading "The story". Keep Challenge open by default.
+Set "The story" section to this exact copy. Add the intro line "From three ageing offices to one workplace built around how people really work." under the heading. Keep Challenge open by default.
 
 Challenge
 Heading: "Three offices, one ageing footprint"
@@ -88,7 +88,7 @@ Bullets:
 
 Approach
 Heading: "One integrated team, one plan"
-Paragraph: "CBRE brought workplace strategy, tenant representation, project management and sustainability specialists together under a single account lead. A six-week utilisation study shaped the brief, the search and the design, so every decision traced back to how people actually worked."
+Paragraph: "CBRE brought workplace strategy, tenant representation, project management, sustainability and facilities specialists together under a single account lead. A six-week utilisation study shaped the brief, the search and the design, so every decision traced back to how people actually worked."
 Bullets:
 - Occupancy sensors and a staff survey (780 responses) set a 0.7 desk-to-employee ratio
 - A search of 14 options, ending in a six-year lease with a four-month rent-free fit-out period
@@ -102,7 +102,7 @@ Bullets:
 - Fit-out delivered in 14 weeks, on time and 3% under budget
 - 68% of existing furniture reused, donated or recycled
 
-If tabs are not available, show the three as stacked sections with these headings.
+If tabs are not available, use three stacked sections with these headings.
 ```
 
 **2. Results counters and methodology note**
@@ -224,7 +224,7 @@ Remove any custom styling you applied to individual elements and apply the selec
 | At a glance – Sector | Technology | At a glance | |
 | At a glance – Location | Singapore CBD | At a glance | Use a district or region, never a building name or address, unless the client approves. |
 | At a glance – Size | 96,700 sq ft (from 124,000 sq ft) | At a glance | Use NLA in sq ft. Must match the Results tab and counter 1 label. |
-| At a glance – Services | Workplace strategy, tenant representation, project management, ESG | At a glance | Must match the Services we provided cards. |
+| At a glance – Services | Tenant representation, project management, ESG, facilities management | At a glance | One item per Services we provided card, in the same order (workplace strategy sits under the Project Management card). Must also match the service lines named in the Approach tab. |
 | At a glance – Timeline | 11 months to move-in | At a glance | Must match the timeline heading and dates (Oct 2025 – Aug 2026). |
 | Story intro | From three ageing offices to one workplace built around how people really work. | The story | |
 | Challenge tab | Heading "Three offices, one ageing footprint", paragraph, 3 bullets | The story | Describe the client's situation, not CBRE. Avoid details that identify an anonymised client. |
@@ -263,6 +263,7 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Related story URLs | https://www.cbre.com.sg/insights | More client stories | **Placeholder.** Replace with each case study's URL. Delete cards rather than linking to unpublished stories. |
 | CTA heading + body | Planning your next workplace move? / Whether you're consolidating, expanding or rethinking… | Contact CTA | Match the project type. |
 | Contact URL | https://www.cbre.com.sg/contact-us | Hero, CTA, Nav | **Placeholder.** Replace in every location (up to 3). |
+| Navigation labels (optional) | Overview · The story · Results · Before & after · Timeline · Services · [Contact our team] | Navigation | Only if follow-up 9 was used. Keep labels in step with the section headings; delete a label if you delete its section. |
 | Disclaimer | [Disclaimer placeholder — insert the approved CBRE Singapore disclaimer…] | Footer | **Mandatory** (the story contains cost and savings figures). Get approved wording from Legal/Compliance. Never publish with the placeholder. |
 | Image disclaimer | Images are for illustration only. | Footer | Delete it if all images are the project's own photography. |
 | Sample-content footer note | Sample content for template purposes only — replace before publishing. | Footer | Keep it in the template. **Delete it in the published copy** only after all content is replaced and verified. |
@@ -287,7 +288,7 @@ Everything below is fictional sample content for template purposes. The client, 
 | Sector | Technology |
 | Location | Singapore CBD |
 | Size | 96,700 sq ft (from 124,000 sq ft) |
-| Services | Workplace strategy, tenant representation, project management, ESG |
+| Services | Tenant representation, project management, ESG, facilities management |
 | Timeline | 11 months to move-in |
 
 ### 3. The story
@@ -308,7 +309,7 @@ Everything below is fictional sample content for template purposes. The client, 
 **Tab: Approach**
 
 - **Heading:** One integrated team, one plan
-- **Paragraph:** CBRE brought workplace strategy, tenant representation, project management and sustainability specialists together under a single account lead. A six-week utilisation study shaped the brief, the search and the design, so every decision traced back to how people actually worked.
+- **Paragraph:** CBRE brought workplace strategy, tenant representation, project management, sustainability and facilities specialists together under a single account lead. A six-week utilisation study shaped the brief, the search and the design, so every decision traced back to how people actually worked.
 - **Bullets:**
   - Occupancy sensors and a staff survey (780 responses) set a 0.7 desk-to-employee ratio
   - A search of 14 options, ending in a six-year lease with a four-month rent-free fit-out period
@@ -344,7 +345,7 @@ Internal consistency of the sample: 1,150 employees × 0.7 desk ratio ≈ 805 de
 **Calculation behind the sample figures** (for whoever replaces them):
 
 - Space reduction = (124,000 − 96,700) ÷ 124,000 = 27,300 ÷ 124,000 = **22.0%**
-- Annual gross occupancy cost before = 124,000 sq ft × S$11.50 psf/mth × 12 = S$17,112,000
+- Annual gross occupancy cost before = 124,000 sq ft × S$11.50 psf/mth × 12 = S$17,112,000 (blended across the three old offices, including the duplicated reception, security and facilities services of running three sites)
 - Annual gross occupancy cost after = 96,700 sq ft × S$12.65 psf/mth × 12 = S$14,679,060
 - Saving = S$2,432,940 ≈ **S$2.4M a year** (about 14% of the previous cost)
 
@@ -444,7 +445,7 @@ To save credits, T1 can reuse B1 and T3 can reuse B2; the page then shows each i
 | B2 – After | Activity-based workplace with varied settings: booths, lounge, project tables, plants | `activity based working office interior flexible seating booths` | Landscape 16:9, ≥ 2000 px wide (same as B1) | After: an activity-based office with booths, lounge seating and project tables |
 | R1 – Related story 1 | Modern corporate office floor or meeting room, no signage (bank story) | `modern corporate office meeting room glass walls asia` | Landscape 3:2, ≥ 1200 px wide | Modern corporate office meeting room |
 | R2 – Related story 2 | Modern logistics warehouse interior with high racking; no branded packaging | `modern logistics warehouse interior racking asia` | Landscape 3:2, ≥ 1200 px wide | Interior of a modern logistics warehouse with high racking |
-| R3 – Related story 3 | Facilities technician inspecting building equipment, or a clean laboratory corridor | `facilities technician inspecting building equipment asia` (alt: `modern laboratory interior clean bright`) | Landscape 3:2, ≥ 1200 px wide | Facilities technician carrying out a building inspection |
+| R3 – Related story 3 | Facilities technician inspecting building equipment, or a clean laboratory corridor | `facilities technician inspecting building equipment asia` (alt: `modern laboratory interior clean bright`) | Landscape 3:2, ≥ 1200 px wide | Facilities technician carrying out a building inspection (if the laboratory alternative is used: "A clean, modern laboratory interior") |
 
 **No testimonial photo.** Never pair a stock face with a client quote. Add a photo only if the client supplies an approved one.
 

@@ -53,14 +53,14 @@ On mobile, stack cards, counters and contact cards in one column.
 After generation, check each section against this list. Use the follow-up prompts to fix anything missing.
 
 1. **Hero**: full-width section with an image placeholder, eyebrow, H1 headline, subhead and publish date. It has two buttons: "Explore the sectors" scrolls (anchor link) to section 3; "Download full report" links out in a new tab.
-2. **Key takeaways**: a four-card grid (2×2 or 4-across on desktop, one column on mobile). Each card has a sector label, a prominent stat and a one-line summary. The cards are static, with an optional entrance animation.
+2. **Key takeaways**: a four-card grid (2×2 or 4-across on desktop, one column on mobile). Each card has a sector label, a prominent stat and a one-line summary. Card content is static, with an optional entrance animation. After follow-up 4, each sector label links to its tab in section 3 (fallback: to the top of section 3).
 3. **Sector deep dive**: a tabs component with four tabs. Clicking a tab switches the panel. Each panel has:
    - a sector image placeholder
    - four animated number counters that count up once when scrolled into view or when the tab opens
    - a simple 8-point line chart (fallback: shape-built bar chart or a chart image placeholder)
    - a source line
    - an outlook paragraph
-4. **Outlook for the next 12 months**: an accordion with five items. Clicking a header expands or collapses it, and only one item is open at a time.
+4. **Outlook for the next 12 months**: heading, intro line and an accordion with five items. Clicking a header expands or collapses it. The first item is open by default, and only one item is open at a time. **Fallback:** if the accordion can't enforce one-open-at-a-time, independent expand/collapse is acceptable.
 5. **Talk to our analysts**: three contact cards (photo placeholder, name, title, email, phone). Each card's "Email" button opens a `mailto:` link.
 6. **Closing CTA band**: heading, one line of body copy, and two buttons ("Download full report" and "Contact our team"). Both open in a new tab.
 7. **Footer**: disclaimer placeholder paragraph and the visible sample-content note.
@@ -91,9 +91,11 @@ Chart: 4.95, 4.97, 4.98, 5.00, 5.02, 5.04, 5.06, 5.10
 Outlook: "Private home prices rose 0.9% quarter-on-quarter, supported by well-received new launches and stable interest rates. New home sales reached 2,150 units in the quarter. With a healthy supply pipeline, we expect price growth to moderate to 2–4% over the next 12 months, while rents stay broadly stable."
 ```
 
-**2. Office tab copy and chart details (all tabs)**
+**2. Sector intro, Office tab copy and chart details (all tabs)**
 
 ```text
+Under the "Sector deep dive" heading, add the intro line "Select a sector to see this quarter's key indicators, rent trend and outlook."
+
 In the Office tab, set the outlook paragraph to: "Flight-to-quality demand continued to drive leasing in the CBD, led by financial services, technology and professional services occupiers moving into newer, more sustainable buildings. With limited new Core CBD supply until 2028, we expect Grade A rents to grow 1–3% over the next 12 months, while older stock may need larger incentives to compete."
 
 For the chart in every tab: x-axis labels "Q4 24, Q1 25, Q2 25, Q3 25, Q4 25, Q1 26, Q2 26, Q3 26"; y-axis label "S$ psf/mth"; show the value label on the latest point; keep the line "Source: CBRE Research (sample data)" directly under the chart. If a native chart component is not available, build a simple bar chart from shapes with the value above each bar and the quarter below it. If that is not possible either, insert an image placeholder labelled "Chart image – replace with exported chart".
@@ -121,10 +123,10 @@ Make each card's sector label link to the matching tab in the Sector deep dive i
 **5. Outlook accordion copy**
 
 ```text
-Set the "Outlook for the next 12 months" accordion items to this exact copy, with the first item open by default:
+Under the "Outlook for the next 12 months" heading, add the intro line "CBRE Research's view of where Singapore's markets are heading." Set the accordion items to this exact copy, with the first item open by default and only one item open at a time if supported:
 
 Office – Rents forecast +1% to +3%: "Limited new Core CBD completions until 2028 should keep Grade A vacancy below 5%. Expect continued consolidation into newer, high-specification buildings."
-Industrial & Logistics – Rents forecast +1% to +2%: "Around 3.5 million sq ft of new industrial supply is due over the period, much of it pre-committed. Demand will be led by logistics operators and high-value manufacturing."
+Industrial & Logistics – Rents forecast +1% to +2%: "Around 3.5 million sq ft of new warehouse supply is due over the period, much of it pre-committed. Demand will be led by logistics operators and high-value manufacturing."
 Retail – Prime rents forecast +0.5% to +1.5%: "A busy events calendar and recovering tourist arrivals support footfall. Rising operating costs will keep retailers disciplined on expansion."
 Residential – Prices forecast +2% to +4%: "A steady launch pipeline and land supply should keep price growth measured. Rents are expected to be flat to +2%."
 Key risks to watch: "Slower global growth and trade policy uncertainty; the pace of interest rate cuts; rising fit-out and operating costs; and geopolitical events that weigh on business sentiment."
@@ -180,7 +182,7 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Experience name | `[Template] Quarterly Market Outlook` | Settings | When you duplicate it, rename to e.g. `Singapore Market Outlook Q4 2026` and remove `[Template]`. |
 | SEO / share title | Singapore Market Outlook Q3 2026 – CBRE Research | Settings | Set in experience settings if available. Update the quarter. |
 | SEO / share description | Key takeaways, sector KPIs and 12-month outlook for Singapore office, industrial & logistics, retail and residential markets. | Settings | Keep under about 160 characters. |
-| Quarter label | Q3 2026 | Hero, Key takeaways, CTA | Appears in the eyebrow, headline and CTA heading. Find and replace every instance. |
+| Quarter label | Q3 2026 | Settings, Hero, Sector deep dive, Closing CTA | Appears in the SEO title, eyebrow, headline, the "(Q3 2026)" counter labels in every tab, and the CTA heading. Find and replace every instance. |
 | Hero eyebrow | CBRE Research \| Singapore \| Q3 2026 | Hero | |
 | Hero headline (H1) | Singapore Market Outlook Q3 2026 | Hero | |
 | Hero subhead | Quality space leads a steady quarter across Singapore's commercial property markets. | Hero | One sentence that sums up the quarter. |
@@ -212,7 +214,7 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Residential outlook paragraph | Private home prices rose 0.9%… | Sector – Residential | |
 | Chart title and axes | Rent trend, last 8 quarters (S$ psf/mth); x: Q4 24 … Q3 26 | Sector – all tabs | If a sector uses a different metric (e.g. price index), change the title and the y-axis label together. |
 | Chart source line | Source: CBRE Research (sample data) | Sector – all tabs | Remove "(sample data)" only once real data is in. Add a date, e.g. "Q3 2026". |
-| Outlook accordion heading | Outlook for the next 12 months | Outlook | |
+| Outlook heading and intro | Outlook for the next 12 months / CBRE Research's view of where Singapore's markets are heading. | Outlook | |
 | Accordion – Office | Rents forecast +1% to +3%… | Outlook | Forecast ranges must be signed off by Research. |
 | Accordion – Industrial & Logistics | Rents forecast +1% to +2%… | Outlook | |
 | Accordion – Retail | Prime rents forecast +0.5% to +1.5%… | Outlook | |
@@ -222,9 +224,11 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Analyst card 1 | Firstname Lastname, Head of Research, Singapore & Southeast Asia, firstname.lastname@cbre.com, +65 6XXX XXXX | Analysts | Use real, approved staff details and headshots only. Get each person's consent to be featured. |
 | Analyst card 2 | Firstname Lastname, Associate Director, Research (Office & Retail) | Analysts | As above. |
 | Analyst card 3 | Firstname Lastname, Senior Manager, Research (Industrial & Residential) | Analysts | As above. Delete the card if there are only two contacts. |
+| Analyst photos (×3) | Circular headshot placeholders | Analysts | Image slots A1–A3. Use each named person's own approved headshot; never a stock face next to a real name. Update the alt text with the real name and title. |
 | Closing CTA heading and body | Get the full Q3 2026 report / Download the full Singapore Market Outlook… | Closing CTA | |
 | Download report URL | https://www.cbre.com.sg/insights | Hero, Closing CTA | Placeholder. Replace with the actual report URL in both places. |
 | Contact URL | https://www.cbre.com.sg/contact-us | Closing CTA | Placeholder. Replace with a campaign or contact form URL if one exists. |
+| Navigation labels (optional) | Takeaways · Sectors · Outlook · Analysts · Full report | Navigation | Only if follow-up 8 was applied. Keep the labels in step with the section headings; "Full report" anchors to the Closing CTA. |
 | Disclaimer | [Disclaimer placeholder — insert the approved CBRE Research disclaimer…] | Footer | **Mandatory.** Get approved wording from Legal/Compliance. Never publish with the placeholder. |
 | Sample-content footer note | Sample content for template purposes only — replace before publishing. | Footer | Keep it in the template. **Delete it in the published copy** only after all content is replaced and verified. |
 
@@ -327,7 +331,7 @@ Outlook: "Private home prices rose 0.9% quarter-on-quarter, supported by well-re
 | # | Accordion header | Body |
 |---|---|---|
 | 1 (open by default) | Office – Rents forecast +1% to +3% | Limited new Core CBD completions until 2028 should keep Grade A vacancy below 5%. Expect continued consolidation into newer, high-specification buildings. |
-| 2 | Industrial & Logistics – Rents forecast +1% to +2% | Around 3.5 million sq ft of new industrial supply is due over the period, much of it pre-committed. Demand will be led by logistics operators and high-value manufacturing. |
+| 2 | Industrial & Logistics – Rents forecast +1% to +2% | Around 3.5 million sq ft of new warehouse supply is due over the period, much of it pre-committed. Demand will be led by logistics operators and high-value manufacturing. |
 | 3 | Retail – Prime rents forecast +0.5% to +1.5% | A busy events calendar and recovering tourist arrivals support footfall. Rising operating costs will keep retailers disciplined on expansion. |
 | 4 | Residential – Prices forecast +2% to +4% | A steady launch pipeline and land supply should keep price growth measured. Rents are expected to be flat to +2%. |
 | 5 | Key risks to watch | Slower global growth and trade policy uncertainty; the pace of interest rate cuts; rising fit-out and operating costs; and geopolitical events that weigh on business sentiment. |
@@ -399,7 +403,8 @@ Search at https://stock.adobe.com/sg. Selection rules:
 - [ ] Counters animate (or fade in) and end on the exact values, with the correct S$, +, %, sq ft and units formatting.
 - [ ] Chart values match the sample content table for every tab, and the latest value equals counter 1 (Office, I&L, Retail, Residential).
 - [ ] The takeaway card stats match the tab counters.
-- [ ] Accordion: five items, first open by default, only one open at a time.
+- [ ] Accordion: intro line present; five items, first open by default, only one open at a time (or independent toggles if single-open isn't supported).
+- [ ] If follow-up 4 was applied, each takeaway card's sector label opens its tab (or scrolls to the Sector deep dive).
 - [ ] Analyst "Email" buttons open `mailto:` links.
 - [ ] All interactions were tested in preview on **desktop and mobile**: tabs, counters, accordion, anchor links, buttons, and nav if added.
 - [ ] Mobile: cards, counters and contact cards stack in one column; nothing is overlapping, cut off or scrolling horizontally.

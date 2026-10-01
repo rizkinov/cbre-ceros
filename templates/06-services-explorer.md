@@ -41,7 +41,7 @@ Sections, in order:
 
 7. Footer: "[Disclaimer placeholder: insert the approved CBRE Singapore disclaimer.]" and the visible note "Sample content for template purposes only — replace before publishing."
 
-On mobile, use one or two tile columns, stack tab content and counters, and make popups fit the screen and scroll inside.
+On mobile, use one or two tile columns and make popups fit the screen and scroll inside.
 ```
 
 ## Expected structure
@@ -50,7 +50,7 @@ After generation, check each section against this list. Use the follow-up prompt
 
 1. **Hero**: full-width image placeholder, eyebrow, H1 headline and subhead. "Explore our services" scrolls (anchor link) to section 3; "Talk to us" links to https://www.cbre.com.sg/contact-us in a new tab.
 2. **Intro**: H2 heading and a two-sentence paragraph. Static.
-3. **Explore our services**: an instruction line and a grid of eight tiles (4×2 on desktop, 2 columns or one column on mobile). Each tile has an icon, title and teaser, and the whole tile is clickable. Clicking or tapping a tile opens its own popup (modal) containing:
+3. **Explore our services**: an instruction line and a grid of eight tiles (e.g. 4×2 on desktop; 2 columns or one column on mobile). Each tile has an icon, title and teaser, and the whole tile is clickable. Clicking or tapping a tile opens its own popup (modal) containing:
    - title
    - one paragraph
    - "Key offerings" with three bullets
@@ -180,12 +180,12 @@ Stats: "45" – "Commercial properties managed in Singapore" | "9M sq ft" – "N
 Contact: Firstname Lastname | Senior Director, Property Management | firstname.lastname@cbre.com | +65 6XXX XXXX
 
 ESG & Sustainability Consulting
-Paragraph: "We help owners and occupiers set credible sustainability targets and turn them into action. From building audits and green certifications to net-zero roadmaps and ESG reporting, our consultants link sustainability performance to cost, risk and asset value."
+Paragraph: "We help owners and occupiers set credible sustainability targets and turn them into action. From building audits and sustainability certifications to net-zero roadmaps and ESG reporting, our consultants link sustainability performance to cost, risk and asset value."
 Key offerings:
 - Net-zero roadmaps and decarbonisation plans
-- Green building certification support, including BCA Green Mark
+- Building certification support, including BCA Green Mark
 - ESG data, reporting and benchmarking
-Stats: "60+" – "Green certifications and audits supported" | "18%" – "Average energy savings identified in building audits"
+Stats: "60+" – "Building certifications and audits supported" | "18%" – "Average energy savings identified in building audits"
 Contact: Firstname Lastname | Director, ESG & Sustainability Consulting | firstname.lastname@cbre.com | +65 6XXX XXXX
 
 Both "Learn more" buttons link to https://www.cbre.com.sg/services in a new tab. The contact email opens a mailto link.
@@ -265,7 +265,7 @@ Add a slim navigation bar at the top with anchor links "Services", "Who we serve
 **11. Accessibility and mobile pass**
 
 ```text
-Do an accessibility and mobile pass: use one H1 (the hero headline) and an H2 for each section heading; give each tile an accessible label such as "Open Capital Markets details"; make sure tiles, popups, the close button, tabs and links all work with a keyboard, that focus moves into a popup when it opens and back to its tile when it closes, and that Esc closes it if supported; give every image placeholder descriptive alt text; make button and link text descriptive (no "Click here"); and check that on mobile the tiles, popups, tab content and counters display cleanly with no overlapping, cut-off text or page-level horizontal scrolling.
+Do an accessibility and mobile pass: use one H1 (the hero headline) and an H2 for each section heading; give each tile an accessible label such as "Open Capital Markets details"; make sure tiles, popups, the close button, tabs and links all work with a keyboard and, where supported, that focus moves into a popup when it opens and back to its tile when it closes and that Esc closes it; give every image placeholder descriptive alt text; make button and link text descriptive (no "Click here"); and check that on mobile the tiles, popups, tab content and counters display cleanly with no overlapping, cut-off text or page-level horizontal scrolling.
 ```
 
 **12. Reset styling drift (use only if needed)**
@@ -289,9 +289,9 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Intro heading + paragraph | Integrated expertise, one point of contact / Our specialists work as one team across eight service lines… | Intro | Update "eight" if you add or remove service lines. |
 | Explorer heading + instruction | Explore our services / Select a service to see what we do, sample results and who to talk to. | Explore our services | Drop "sample" from the instruction once the stats are real. |
 | Tile 1 – Advisory & Transaction Services | Title, teaser "Find, secure and optimise the right space.", icon | Explore our services | Tile title must match the popup title and the case-study service cards. |
-| Popup 1 – copy | Paragraph "Whether you are expanding, consolidating or renewing…" + 3 key offerings | Popup 1 | Approved by the business line head. Paragraph 40–60 words. |
+| Popup 1 – copy | Paragraph "Whether you are expanding, consolidating or renewing…" + 3 key offerings | Popup 1 | Approved by the business line head. Keep each popup paragraph to about 35–50 words (the samples are 35–46). |
 | Popup 1 – stats | 2.1M sq ft – Space leased and sold for clients in Singapore, 2025; 310 – Transactions completed, 2025 | Popup 1 | **Sample.** Use only verified, approved figures with a year. |
-| Popup 1 – contact + link | Firstname Lastname, Executive Director, Advisory & Transaction Services, firstname.lastname@cbre.com, +65 6XXX XXXX; Learn more → https://www.cbre.com.sg/services | Popup 1 | Real staff details and headshot only with consent. Replace the URL with the service page. |
+| Popup 1 – contact + link | Firstname Lastname, Executive Director, Advisory & Transaction Services, firstname.lastname@cbre.com, +65 6XXX XXXX; Learn more → https://www.cbre.com.sg/services | Popup 1 | Real staff details and headshot only with consent. Photo is image slot C1 (C2–C8 for popups 2–8). Replace the URL with the service page. |
 | Tile 2 – Project Management | Title, teaser "Workplaces delivered on time and on budget.", icon | Explore our services | |
 | Popup 2 – copy | Paragraph "From the first space brief to the last box unpacked…" + 3 key offerings | Popup 2 | |
 | Popup 2 – stats | 1.4M sq ft – Fit-out and refurbishment delivered in Singapore, 2025; 96% – Projects delivered on or ahead of schedule | Popup 2 | **Sample.** |
@@ -318,7 +318,7 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Popup 7 – contact + link | Firstname Lastname, Senior Director, Property Management; Learn more → https://www.cbre.com.sg/services | Popup 7 | As popup 1. |
 | Tile 8 – ESG & Sustainability Consulting | Title, teaser "Lower carbon, stronger asset value.", icon | Explore our services | |
 | Popup 8 – copy | Paragraph "We help owners and occupiers set credible sustainability targets…" + 3 key offerings | Popup 8 | Avoid unqualified environmental claims; ESG wording needs Compliance review. |
-| Popup 8 – stats | 60+ – Green certifications and audits supported; 18% – Average energy savings identified in building audits | Popup 8 | **Sample.** |
+| Popup 8 – stats | 60+ – Building certifications and audits supported; 18% – Average energy savings identified in building audits | Popup 8 | **Sample.** |
 | Popup 8 – contact + link | Firstname Lastname, Director, ESG & Sustainability Consulting; Learn more → https://www.cbre.com.sg/services | Popup 8 | As popup 1. |
 | Popup sample-figures line | Sample figures – replace before publishing. | All popups | Delete from every popup once all stats are verified. |
 | Who we serve intro | Whatever your role in real estate, we tailor our team to your goals. | Who we serve | |
@@ -334,6 +334,7 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Counters sample line | Sample figures – replace with the latest approved CBRE figures. | Why CBRE | Replace with a source line, e.g. "Source: CBRE, as at <date>", once real. |
 | CTA heading + body | Not sure where to start? / Tell us what you're planning and we'll connect you with the right specialist… | Contact CTA | |
 | Contact URL | https://www.cbre.com.sg/contact-us | Hero, tabs, CTA, Nav | **Placeholder.** Replace in every location (up to 6). |
+| Navigation labels (optional) | Services · Who we serve · Why CBRE · [Contact us] | Navigation | Only if follow-up 10 was used. Keep labels in step with the section headings. |
 | Research URL | https://www.cbre.com.sg/insights | Popup 6, CTA | **Placeholder.** |
 | Service "Learn more" URL | https://www.cbre.com.sg/services | Popups 1–5, 7–8 | **Placeholder.** Replace with each service line's own page. Check that every URL loads. |
 | Disclaimer | [Disclaimer placeholder — insert the approved CBRE Singapore disclaimer…] | Footer | **Mandatory** (the page covers investment, valuation and transaction services). Get approved wording from Legal/Compliance. Never publish with the placeholder. |
@@ -436,9 +437,9 @@ Use the icons available in Ceros; don't license icons from Stock.
 
 **Popup 8 – ESG & Sustainability Consulting**
 
-- **Paragraph:** We help owners and occupiers set credible sustainability targets and turn them into action. From building audits and green certifications to net-zero roadmaps and ESG reporting, our consultants link sustainability performance to cost, risk and asset value.
-- **Key offerings:** Net-zero roadmaps and decarbonisation plans · Green building certification support, including BCA Green Mark · ESG data, reporting and benchmarking
-- **Stats:** **60+** – Green certifications and audits supported · **18%** – Average energy savings identified in building audits
+- **Paragraph:** We help owners and occupiers set credible sustainability targets and turn them into action. From building audits and sustainability certifications to net-zero roadmaps and ESG reporting, our consultants link sustainability performance to cost, risk and asset value.
+- **Key offerings:** Net-zero roadmaps and decarbonisation plans · Building certification support, including BCA Green Mark · ESG data, reporting and benchmarking
+- **Stats:** **60+** – Building certifications and audits supported · **18%** – Average energy savings identified in building audits
 - **Your contact:** Firstname Lastname, Director, ESG & Sustainability Consulting · firstname.lastname@cbre.com · +65 6XXX XXXX
 - **Learn more:** https://www.cbre.com.sg/services (new tab)
 

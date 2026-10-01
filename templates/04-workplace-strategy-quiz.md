@@ -10,39 +10,39 @@
 
 ## Purpose
 
-"What is your hybrid workplace profile?" is a personality-style quiz with seven questions. It sorts a respondent's organisation into one of four hybrid workplace profiles. Each result gives a description, three recommendations, a relevant CBRE service and a call to action to talk to a specialist. CBRE Singapore marketing and workplace teams duplicate it as a top-of-funnel engagement piece for LinkedIn campaigns, event QR codes and pre-workshop warm-ups, swapping questions, profile copy, services, images and links. The full scoring map and tie-break rule are below so the logic can be rebuilt or edited safely.
+"What is your hybrid workplace profile?" is a seven-question, personality-style quiz that sorts a respondent's organisation into one of four hybrid workplace profiles, each with a description, three recommendations, a relevant CBRE service and a call to action to talk to a specialist. CBRE Singapore marketing and workplace teams duplicate it as a top-of-funnel engagement piece for LinkedIn campaigns, event QR codes and pre-workshop warm-ups, swapping questions, profile copy, services, images and links. The full scoring map and tie-break rule are below so the logic can be rebuilt or edited safely.
 
 ## Ceros AI prompt
 
-Paste the block below verbatim into the "What will you build today?" box **after** setting Brand Kit = CBRE Test and Folder = CBRE Singapore. It is 2,468 characters (limit assumed to be about 2,500). The letters in brackets are scoring codes only; refinement prompt 2 makes sure they never appear on screen.
+Paste the block below verbatim into the "What will you build today?" box **after** setting Brand Kit = CBRE Test and Folder = CBRE Singapore. It is 2,467 characters (measured with Python `len()` on the fenced block; limit assumed to be about 2,500). The letters in brackets are scoring codes only: the prompt tells the AI never to display them, and refinement prompt 2 repeats it in case the first pass shows them anyway.
 
 ```text
-Build a responsive personality quiz, "What is your hybrid workplace profile?", for CBRE Singapore. Use the selected brand kit's styles throughout; do not modify the brand kit.
+Build a personality quiz, "What is your hybrid workplace profile?", for CBRE Singapore. Use the selected brand kit's styles throughout; do not modify the brand kit.
 
 Profiles: H = The Collaborative Hub, N = The Flexible Network, F = The Focused HQ, E = The Experience-Led Campus.
 
 1. Intro: title, subhead "Seven quick questions to discover how your organisation uses the office, and what to do next.", label "7 questions · 2 minutes", button "Start the quiz", image placeholder: hybrid team.
-2. Seven questions, one per screen, with a "Question 1 of 7" progress bar and Back button. Each answer adds 1 point to the bracketed profile:
+2. Seven questions, one per screen, "Question 1 of 7" progress bar, Back button. Each answer adds 1 point to the bracketed profile; never display the codes:
 Q1 How often are most of your people in the office? 4-5 days, it's our base (F) | 2-3 set team days (H) | It varies: home, clients, flex spaces (N) | When there's a reason: events, culture (E)
 Q2 What does collaboration mostly look like? Workshops and whiteboard sessions (H) | Scheduled meetings around solo work (F) | Town halls, socials, client events (E) | Video check-ins across locations (N)
 Q3 Where does focused work happen best? At home, office days are for teamwork (H) | At my own desk in a quiet office (F) | Anywhere: home, flex centre, near clients (N) | Varied spaces: library, terrace, wellness room (E)
 Q4 Which best describes your workplace tech? Cloud-first, secure anywhere (N) | Every meeting room hybrid-ready (H) | One app for access, booking, events (E) | Robust on-site desk set-ups (F)
 Q5 Which amenity would matter most? Café, wellness studio, event space (E) | Quiet rooms and ergonomic desks (F) | Project rooms and team neighbourhoods (H) | Flex spaces across Singapore (N)
-Q6 How does sustainability shape property decisions? Central: top green ratings, ESG data (E) | Use less space, share it better (N) | Right-size to real use, reinvest savings (H) | Important, balanced with cost (F)
+Q6 How does sustainability shape property decisions? Central: top building certifications, ESG data (E) | Use less space, share it better (N) | Right-size to real use, reinvest savings (H) | Important, balanced with cost (F)
 Q7 What do your next three years look like? Steady growth, room to add teams (F) | Uncertain, flexibility beats footprint (N) | Growing, but consolidating smarter (H) | Building our brand to win talent (E)
-3. Four result screens. Most points wins; ties resolve H > N > E > F. Each result: name, tagline, description, image placeholder, 3 recommendations, "How CBRE can help" service card, button "Talk to a workplace specialist" (https://www.cbre.com.sg/contact-us), "Retake the quiz" and share buttons.
+3. Four result screens. Most points wins; ties go H > N > E > F. Each: name, tagline, description, image placeholder, 3 recommendations, "How CBRE can help" service card, button "Talk to a workplace specialist" (https://www.cbre.com.sg/contact-us), "Retake the quiz", share buttons.
 4. Footer on every screen: "Sample content for template purposes only — replace before publishing."
 ```
 
 ## Expected structure
 
-After generation, check that the experience contains the following.
+After generation **and** the refinement prompts, check that the experience contains the following. Some details (eyebrow, teaser line, helper lines, share row, alt text, footer disclaimer) only arrive with the refinement prompts, so don't expect them after the first pass. The numbering follows the Sample content sections; the prompt has the same order but folds scoring into its item 3 (results) and numbers the footer 4. Component names are a guide: if the New Joiner Onboarding reference in the same folder uses an equivalent component (for example cards instead of tiles), match the reference.
 
 1. **Intro screen.** Hero with eyebrow, title, subhead, meta label "7 questions · 2 minutes", a one-line teaser naming the four profiles, the "Start the quiz" button and image slot IMG-01. *Interaction:* "Start the quiz" opens Question 1.
 2. **Question screens Q1–Q7.** A quiz question component, one question per screen. Each screen has a question stem, a helper line and four single-select answer cards in the order listed in the scoring map. Profile codes (H/N/F/E) are never visible.
    - *Interaction:* selecting an answer marks it as selected and advances to the next question. Fallback: a "Next" button that becomes active after a selection.
-   - "Back" returns to the previous question with its answer still shown and lets the user change it.
-   - The progress indicator reads "Question X of 7" with a bar that advances about 14% per question.
+   - "Back" returns to the previous question with its answer still shown and lets the user change it. Fallback if the quiz component has no Back navigation: leave it out, note it in the QA log, and make sure Retake works instead.
+   - The progress indicator reads "Question X of 7" with a bar that advances about 14% per question. Fallback if a progress bar isn't available: the text label "Question X of 7" on its own.
 3. **Scoring logic (not visible).** Each answer adds points to exactly one profile. The highest total wins, and ties resolve to H > N > E > F. See the scoring map and the implementation options under Sample content.
 4. **Result screens ×4** (The Collaborative Hub, The Flexible Network, The Focused HQ, The Experience-Led Campus). Each is a quiz outcome screen containing:
    - the "Your hybrid workplace profile is" label, profile name and tagline
@@ -93,7 +93,7 @@ Test: answers 1A 2B 3B 4C 5A 6A 7B (counting answers A–D in the order shown) m
 4. **Progress, navigation and selection.**
 
 ```text
-On each question screen show "Question X of 7" with a progress bar that fills in sevenths. Selecting an answer should visibly mark it as selected and move to the next question after a short pause. If auto-advance isn't possible, add a "Next" button that activates once an answer is chosen. Add a "Back" button on Questions 2–7 that keeps the previous answer selected so it can be changed. Answer cards must be large enough to tap easily on mobile.
+On each question screen show "Question X of 7" with a progress bar that fills in sevenths (if a progress bar isn't available, show the text label alone). Selecting an answer should visibly mark it as selected and move to the next question after a short pause. If auto-advance isn't possible, add a "Next" button that activates once an answer is chosen. Add a "Back" button on Questions 2–7 that keeps the previous answer selected so it can be changed. Answer cards must be large enough to tap easily on mobile.
 ```
 
 5. **Result: The Collaborative Hub.**
@@ -143,7 +143,7 @@ Label: "Your hybrid workplace profile is"
 Name: The Experience-Led Campus
 Tagline: "A destination that earns the commute."
 Description: "For you, the office is a strategic tool for culture, talent and client relationships. People come in for experiences they can't get at home, so hospitality, wellbeing and sustainability credentials matter as much as square feet."
-Our recommendations: 1 "Curate a hospitality-led experience: a welcoming arrival, café, events programme and wellbeing spaces." 2 "Prioritise buildings with strong green credentials, and track energy and wellbeing data for ESG reporting." 3 "Use a workplace app and a community programme to keep the space lively and measure engagement."
+Our recommendations: 1 "Curate a hospitality-led experience: a welcoming arrival, café, events programme and wellbeing spaces." 2 "Prioritise buildings with strong sustainability credentials, and track energy and wellbeing data for ESG reporting." 3 "Use a workplace app and a community programme to keep the space lively and measure engagement."
 In practice: "Sample case: A global consumer brand opened a two-floor workplace with an event forum and wellness studio at The Canopy Works, 5 Placeholder Walk, and saw weekly office visits rise by a third."
 How CBRE can help: "Project Management". "Our project managers deliver amenity-rich, sustainable workplaces from design brief to handover, on time and on budget." Link "Explore Project Management" to https://www.cbre.com.sg/ (new tab).
 ```
@@ -194,11 +194,13 @@ How CBRE can help: "A workplace consultant walking clients through an office des
 | Start button label | Start the quiz | 1 Intro | |
 | Intro image + alt | IMG-01 | 1 Intro | See Image slots. |
 | Progress label format | Question X of 7 | 2 Questions | |
+| Navigation labels | Back · Next (fallback only) | 2 Questions | |
 | Q1–Q7 stems, helpers, answers | See Sample content, section 2 | 2 Questions | Keep 4 answers per question, one per profile, so every profile stays equally reachable. |
 | Scoring map | See Sample content, section 3 | 3 Logic | If you edit an answer, keep its profile mapping, or update the map **and** the test paths. |
 | Points per answer | 1 (or weighted 33 / 32 / 31 / 30) | 3 Logic | Use weights only if Ceros can't apply the tie-break directly. |
 | Tie-break priority | Collaborative Hub > Flexible Network > Experience-Led Campus > Focused HQ | 3 Logic | Change only together with the weights and test paths. |
 | Result label | Your hybrid workplace profile is | 4 Results | |
+| Result section headings | Our recommendations · In practice · How CBRE can help | 4 Results | Same on all four results. |
 | Profile names ×4 | The Collaborative Hub · The Flexible Network · The Focused HQ · The Experience-Led Campus | 4 Results | Update the intro teaser line if names change. |
 | Taglines ×4 | See Sample content, section 4 | 4 Results | |
 | Descriptions ×4 | See Sample content, section 4 | 4 Results | Keep to about 60 words for mobile. |
@@ -214,6 +216,7 @@ How CBRE can help: "A workplace consultant walking clients through an office des
 | Share email subject / body | What's your hybrid workplace profile? / Take CBRE Singapore's two-minute quiz: [URL] | 4 Results | |
 | Result images + alt ×4 | IMG-02 to IMG-05 | 4 Results | |
 | Service card image + alt | IMG-06 | 4 Results | Shared across all four results. |
+| "Explore the other profiles" heading + tab text (optional) | Explore the other profiles · name, tagline and first description sentence per profile | 5 Explore | Optional section. Keep in sync with any edited names, taglines or descriptions. |
 | Disclaimer | See Sample content, section 6 | 6 Footer | Placeholder. Replace with Legal/Compliance-approved wording. |
 | Sample footer note | Sample content for template purposes only — replace before publishing. | 6 Footer | Keep it on the template. Remove it from a duplicate only after every sample value has been replaced. |
 | Data capture | None | n/a | Don't add forms or personal-data fields without Marketing and Legal (PDPA) approval. |
@@ -270,7 +273,7 @@ Progress label: "Question X of 7". Navigation: "Back" (Q2–Q7) and auto-advance
 
 **Q6. How does sustainability shape property decisions?**
 *Helper:* Think about how decisions are actually made, not just policy.
-- A. Central: top green ratings, ESG data
+- A. Central: top building certifications, ESG data
 - B. Use less space, share it better
 - C. Right-size to real use, reinvest savings
 - D. Important, balanced with cost
@@ -304,6 +307,9 @@ Codes: **H** = The Collaborative Hub · **N** = The Flexible Network · **F** = 
 1. If the Ceros quiz supports an explicit tie-break or outcome priority, set it to H > N > E > F.
 2. If it resolves ties by outcome order, list the outcomes in the order H, N, E, F, then confirm with test paths P5–P7.
 3. If neither works, use **weighted points**: every H answer = 33, N = 32, E = 31, F = 30, and the highest total wins. Decimal equivalent: 1.03 / 1.02 / 1.01 / 1.00. These weights reproduce the rule above exactly for all 16,384 possible answer combinations, because the weight gap can never overturn a one-answer lead across seven questions.
+4. If Ceros can only keep **one** running score mapped to score ranges (no separate tally per profile), stop and tell the user. A single total can't represent four independent profiles fairly, so don't approximate it with score bands.
+
+Note: because the tie-break favours H, The Collaborative Hub is the most frequent result across all possible answer combinations (about 35%, against about 19% for The Focused HQ). That is expected; keep it in mind before reading anything into result counts.
 
 **Test paths** (answer letters for Q1–Q7, as listed in section 2):
 
@@ -365,7 +371,7 @@ Shared elements on every result screen:
 - **Description:** For you, the office is a strategic tool for culture, talent and client relationships. People come in for experiences they can't get at home, so hospitality, wellbeing and sustainability credentials matter as much as square feet.
 - **Our recommendations:**
   1. Curate a hospitality-led experience: a welcoming arrival, café, events programme and wellbeing spaces.
-  2. Prioritise buildings with strong green credentials, and track energy and wellbeing data for ESG reporting.
+  2. Prioritise buildings with strong sustainability credentials, and track energy and wellbeing data for ESG reporting.
   3. Use a workplace app and a community programme to keep the space lively and measure engagement.
 - **In practice:** Sample case: A global consumer brand opened a two-floor workplace with an event forum and wellness studio at The Canopy Works, 5 Placeholder Walk, and saw weekly office visits rise by a third.
 - **How CBRE can help:** **Project Management.** Our project managers deliver amenity-rich, sustainable workplaces from design brief to handover, on time and on budget. Link: "Explore Project Management" → https://www.cbre.com.sg/ (placeholder)
@@ -414,7 +420,7 @@ Picking images:
 - [ ] Tone and screen conventions match the New Joiner Onboarding reference experience in the same folder.
 - [ ] There are seven questions with four answers each, matching section 2 word for word, in the listed order. Scoring codes (H/N/F/E) are not visible anywhere.
 - [ ] The progress indicator runs from "Question 1 of 7" to "Question 7 of 7" and the bar advances each time.
-- [ ] Back works on Q2–Q7 and changing an earlier answer changes the result.
+- [ ] Back works on Q2–Q7 and changing an earlier answer changes the result (or, if Back isn't supported, its absence is recorded in the QA log).
 - [ ] Test paths P1–P8 each produce the expected result in desktop **and** mobile preview, including the tie paths P5–P7.
 - [ ] All four result screens have the label, name, tagline, description, image, three recommendations, the "In practice" line, the service card with link, the CTA, Retake and Share.
 - [ ] Retake clears scores: run P1, retake, run P2, and the result is The Flexible Network.

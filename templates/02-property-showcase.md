@@ -29,7 +29,7 @@ Sections, in order:
 
 1. Hero: full-width building image placeholder captioned "Artist's impression"; eyebrow "For lease | Singapore CBD"; headline "One Marina Gateway"; subhead "Column-free Grade A offices designed for how teams work now. Whole and part floors from 3,200 sq ft."; buttons "Enquire now" (https://www.cbre.com.sg/contact-us) and "View availability" (scrolls to section 6).
 
-2. "Building at a glance": six spec tiles (icon, value, label): approx. 720,000 sq ft net lettable area; approx. 24,000 sq ft column-free typical floor plate; 3.2 m ceiling height; BCA Green Mark Platinum; completed 2025; 260 parking lots incl. 30 EV charging.
+2. "Building at a glance": six spec tiles (icon, value, label): approx. 720,000 sq ft net lettable area; approx. 24,000 sq ft column-free typical floor plate; 3.2 m ceiling height; Platinum sustainability rating; completed 2025; 260 parking lots incl. 30 EV charging.
 
 3. "Explore the building": large building cutaway image placeholder with five numbered hotspots; each opens a popup with title, two sentences, image placeholder and close button. Hotspots: Grand Lobby; Typical Office Floor; Pantry & Breakout; Sky Terrace; End-of-Trip Facilities.
 
@@ -45,7 +45,7 @@ Sections, in order:
 
 9. Footer: "[Disclaimer placeholder: insert the approved CBRE Singapore leasing disclaimer.]" and the visible note "Sample content for template purposes only — replace before publishing."
 
-On mobile, stack all columns; show the availability table as stacked cards or a scrollable table.
+On mobile, stack all columns and cards in one column.
 ```
 
 ## Expected structure
@@ -57,8 +57,8 @@ After generation, check each section against this list. Use the follow-up prompt
 3. **Explore the building**: a large cutaway or floor-plan image with five numbered hotspot markers. Clicking or tapping a marker opens a popup (modal) with a title, two sentences, an image and a close button. The popup also closes on an outside click or Esc if supported. **Fallback:** if hotspots on an image aren't possible, five numbered buttons or tabs below the image open the same popups or panels.
 4. **Location & connectivity**: two columns (stacked on mobile). One column has the travel-times list and amenities list; the other has an embed placeholder for a map (iframe). **Fallback:** a static location map image plus a "View on map" button linking out.
 5. **Gallery**: a carousel or slider with six slides and captions. Arrows and dots navigate; swipe works on mobile. **Fallback:** a 3×2 image grid where each image opens a popup with the larger image and caption.
-6. **Current availability**: a table with five columns and six rows, plus an "as at" note and a total line. On mobile, rows become stacked cards or the table scrolls horizontally inside its container. Optional "Enquire" link per row.
-7. **Your leasing team**: three contact cards. "Email" opens a `mailto:` link.
+6. **Current availability**: heading, optional intro line, and a table with five data columns and six rows, plus an "as at" note and a total line (both added by follow-up 2 if missing). After follow-up 2, a sixth "Enquire" column holds a link per row. On mobile, rows become stacked cards or the table scrolls horizontally inside its container. **Fallback:** if no native table component is available, build a header row plus six rows from text blocks aligned in columns, or use six availability cards (one per unit) with the column names as labels.
+7. **Your leasing team**: heading, intro line and three contact cards (photo placeholder, name, title, phone, email, optional registration line). "Email" opens a `mailto:` link. An agency licence placeholder line sits below the cards.
 8. **Enquiry CTA band**: heading, one line of copy, and an "Enquire now" button that links out in a new tab.
 9. **Footer**: disclaimer placeholder, image disclaimer (added by follow-up 8 if the first pass omits it) and the visible sample-content note.
 10. *(Optional, from follow-up 7)* **Navigation**: a top or sticky bar with anchor links and a persistent "Enquire now" button, or "Back to top" links.
@@ -84,7 +84,7 @@ If hotspots placed on the image are not possible, place five numbered buttons di
 **2. Availability table rows**
 
 ```text
-Replace the availability table rows with exactly these six rows, in this order (Floor | Unit | Size (sq ft NLA) | Available from | Notes):
+Under the "Current availability" heading, add the intro line "Whole floors and fitted suites, available now and through 2027." Replace the availability table rows with exactly these six rows, in this order (Floor | Unit | Size (sq ft NLA) | Available from | Notes):
 
 Level 35 | Whole floor | 24,100 | 1 January 2027 | Bare shell; direct access to Level 36 sky terrace
 Level 28 | #28-01 | 12,450 | Immediate | Fitted, move-in ready
@@ -93,7 +93,7 @@ Level 15 | Whole floor | 24,000 | 1 July 2027 | Bare shell; can be subdivided
 Level 9 | #09-03 | 4,850 | Immediate | Fitted with four meeting rooms
 Level 3 | #03-01 | 3,200 | 1 November 2026 | Suits a training or client centre
 
-Under the table add "Total available: 77,200 sq ft" and keep the note "Availability as at 30 September 2026 and subject to change." Add a final column "Enquire" with a text link "Enquire" in each row to https://www.cbre.com.sg/contact-us, opening in a new tab. On mobile, show each row as a stacked card with the column names as labels, or make the table scroll horizontally inside its own container.
+Under the table add "Total available: 77,200 sq ft" and keep the note "Availability as at 30 September 2026 and subject to change." Add a final column "Enquire" with a text link "Enquire" in each row to https://www.cbre.com.sg/contact-us, opening in a new tab. On mobile, show each row as a stacked card with the column names as labels, or make the table scroll horizontally inside its own container. If a table component is not available, build a header row and six rows from text blocks aligned in columns, or use six cards (one per unit) with the column names as labels.
 ```
 
 **3. Location, amenities and map**
@@ -102,6 +102,8 @@ Under the table add "Total available: 77,200 sq ft" and keep the note "Availabil
 Update "Location & connectivity":
 
 Intro line: "In the heart of Singapore's CBD, One Marina Gateway puts your team minutes from rail, road and waterfront amenities."
+
+Address line (above the lists): "One Marina Gateway, 8 Example Street, Singapore"
 
 Getting here (list with a simple icon per line):
 - Gateway Central MRT (interchange) – 3 min sheltered walk
@@ -141,16 +143,18 @@ In "Building at a glance", add the intro line "A 38-storey Grade A office tower 
 1. approx. 720,000 sq ft – Net lettable area
 2. approx. 24,000 sq ft – Typical floor plate, column-free
 3. 3.2 m – Finished ceiling height
-4. Platinum – BCA Green Mark rating
+4. Platinum – Sustainability rating
 5. 2025 – Year of completion
 6. 260 lots – Car parking, incl. 30 EV charging lots
-If number counters are available, animate the numeric values once when the grid scrolls into view; otherwise keep them static.
+If number counters are available, animate the numeric values once when the grid scrolls into view; otherwise keep them static. If icons are not available, leave them out.
 ```
+
+After this prompt, **type tile 4's label manually in the editor** as `BCA Green Mark rating` (the Singapore building certification). It is deliberately kept out of every AI prompt so that a colour-like word never reaches the AI and cannot trigger a brand-kit offer. If the AI recolours or restyles tile 4 anyway, apply follow-up 10.
 
 **6. Leasing team cards**
 
 ```text
-Set "Your leasing team" to three cards with this content. Each "Email" button opens a mailto link to the card's email address.
+Under the "Your leasing team" heading, add the intro line "Speak to the team that knows One Marina Gateway best." Set the section to three cards with this content. Each "Email" button opens a mailto link to the card's email address.
 
 1. Firstname Lastname | Executive Director, Office Leasing | +65 6XXX XXXX | firstname.lastname@cbre.com
 2. Firstname Lastname | Associate Director, Office Leasing | +65 9XXX XXXX | firstname.lastname@cbre.com
@@ -196,8 +200,8 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Experience name | `[Template] Property Showcase` | Settings | When you duplicate it, rename to e.g. `<Building name> – Leasing` and remove `[Template]`. |
 | SEO / share title | One Marina Gateway – Grade A Offices for Lease, Singapore CBD | Settings | Set in experience settings if available. |
 | SEO / share description | Column-free Grade A offices from 3,200 sq ft. View specs, floor plans, availability and contact the leasing team. | Settings | Keep under about 160 characters. |
-| Building name | One Marina Gateway | Hero, Location, CTA | **Invented sample.** Find and replace every instance. |
-| Address | 8 Example Street, Singapore | Hero/meta, Location | **Invented sample.** Use the full address with postal code when live. |
+| Building name | One Marina Gateway | Settings (SEO title), Hero, Location, Leasing team intro, Enquiry CTA, image alt text (P1, P2, P8) | **Invented sample.** Find and replace every instance, including alt text. |
+| Address | One Marina Gateway, 8 Example Street, Singapore | Location (address line) | **Invented sample.** Use the full address with postal code when live. |
 | Hero eyebrow | For lease \| Singapore CBD | Hero | Change to "For sale" / "For lease and sale" as needed. |
 | Hero subhead | Column-free Grade A offices designed for how teams work now. Whole and part floors from 3,200 sq ft. | Hero | The "from" size must match the smallest unit in Availability. |
 | Hero image + caption | Building exterior render / "Artist's impression" | Hero | Image slot P1. Use the landlord-approved render or photo. Keep the caption if it's a render. |
@@ -206,7 +210,7 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Spec tile 1 – NLA | approx. 720,000 sq ft | Building at a glance | Use the landlord's confirmed figure. Say "approx." unless it's surveyed. |
 | Spec tile 2 – Typical floor plate | approx. 24,000 sq ft, column-free | Building at a glance | |
 | Spec tile 3 – Ceiling height | 3.2 m finished ceiling height | Building at a glance | Singapore convention is metres. |
-| Spec tile 4 – Green Mark rating | Platinum (BCA Green Mark) | Building at a glance | Confirm the current certification level and version. "Green Mark" is a certification name, not a styling term. |
+| Spec tile 4 – Green Mark rating | Platinum / BCA Green Mark rating | Building at a glance | Confirm the current certification level and version. Type the label directly in the editor; never put it in an AI prompt (see the note under follow-up 5). |
 | Spec tile 5 – Completion year | 2025 | Building at a glance | For a development, use "Expected TOP 20XX". |
 | Spec tile 6 – Parking | 260 lots, incl. 30 EV charging | Building at a glance | |
 | Optional extra specs | 38 storeys; 4.0 kN/m² floor loading; destination-control lifts; 150 mm raised floor | Building at a glance | Add a second row only if the landlord supplies them. |
@@ -222,6 +226,7 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Amenities list (×6) | 50+ F&B outlets within 5 min… | Location | Use only verifiable amenities. |
 | Map embed URL | Placeholder box: "Map embed – replace with property map" | Location | Use a Google Maps embed (iframe) of the actual address, or slot P9 plus a "View on map" link. |
 | Gallery slides (×6) | Exterior at dusk; Lobby; Typical floor; Pantry; Sky terrace; End-of-trip | Gallery | Slots P8, P3–P7. Keep the "artist's impression" / "indicative fit-out" tags where true. |
+| Availability intro (optional) | Whole floors and fitted suites, available now and through 2027. | Availability | Update the year range to match the latest "Available from" date. |
 | Availability "as at" date | 30 September 2026 | Availability | **Update every time the table changes.** |
 | Availability row 1 | Level 35 \| Whole floor \| 24,100 \| 1 January 2027 \| Bare shell… | Availability | |
 | Availability row 2 | Level 28 \| #28-01 \| 12,450 \| Immediate \| Fitted, move-in ready | Availability | |
@@ -230,12 +235,15 @@ Remove any custom styling you applied to individual elements and apply the selec
 | Availability row 5 | Level 9 \| #09-03 \| 4,850 \| Immediate \| Fitted with four meeting rooms | Availability | |
 | Availability row 6 | Level 3 \| #03-01 \| 3,200 \| 1 November 2026 \| Suits a training or client centre | Availability | Delete or add rows as needed. Keep the smallest size consistent with the hero subhead. |
 | Total available | 77,200 sq ft | Availability | Recalculate whenever rows change. |
+| Leasing team intro | Speak to the team that knows One Marina Gateway best. | Leasing team | Contains the building name. |
 | Leasing team card 1 | Firstname Lastname, Executive Director, Office Leasing, +65 6XXX XXXX, firstname.lastname@cbre.com | Leasing team | Use real, approved staff details and headshots only, with each person's consent. |
 | Leasing team card 2 | Firstname Lastname, Associate Director, Office Leasing, +65 9XXX XXXX | Leasing team | As above. |
 | Leasing team card 3 | Firstname Lastname, Senior Manager, Office Leasing, +65 9XXX XXXX | Leasing team | As above. |
+| Leasing team photos (×3) | Circular headshot placeholders | Leasing team | Image slots B1–B3. Use each named person's own approved headshot; never a stock face next to a real name. Update the alt text with the real name and title. |
 | Registration / licence lines | Registration No. [placeholder]; [Agency name and licence number placeholder] | Leasing team | Ask Compliance whether agent registration and agency licence numbers must be shown for this mandate (required for residential; check for commercial). Delete the lines if not required. |
 | Enquiry CTA heading + body | Arrange a private viewing / Speak to our leasing team about whole- and part-floor options… | Enquiry CTA | |
 | Enquiry URL | https://www.cbre.com.sg/contact-us | Hero, Availability, Nav, CTA | Placeholder. Replace in **every** location (up to 4). |
+| Navigation labels (optional) | Overview · Explore · Location · Gallery · Availability · Contact · [Enquire now] | Navigation | Only if follow-up 7 was applied. Keep the labels in step with the section headings. |
 | Disclaimer | [Disclaimer placeholder — insert the approved CBRE Singapore leasing disclaimer…] | Footer | **Mandatory.** Get approved wording from Legal/Compliance. Never publish with the placeholder. |
 | Image disclaimer | Images are artist's impressions or for illustration only. | Footer | Keep it if any render or indicative image is used. |
 | Sample-content footer note | Sample content for template purposes only — replace before publishing. | Footer | Keep it in the template. **Delete it in the published copy** only after all content is replaced and verified. |
@@ -263,7 +271,7 @@ Everything below is fictional sample content for template purposes. "One Marina 
 | 1 | approx. 720,000 sq ft | Net lettable area | building |
 | 2 | approx. 24,000 sq ft | Typical floor plate, column-free | floor plan / grid |
 | 3 | 3.2 m | Finished ceiling height | vertical arrows |
-| 4 | Platinum | BCA Green Mark rating | leaf |
+| 4 | Platinum | BCA Green Mark rating (type manually; the AI prompts use "Sustainability rating") | leaf |
 | 5 | 2025 | Year of completion | calendar |
 | 6 | 260 lots | Car parking, incl. 30 EV charging lots | car / charging plug |
 
@@ -288,6 +296,7 @@ Suggested hotspot positions are for the sample cutaway image. Reposition them fo
 
 - **Heading:** Location & connectivity
 - **Intro:** In the heart of Singapore's CBD, One Marina Gateway puts your team minutes from rail, road and waterfront amenities.
+- **Address line:** One Marina Gateway, 8 Example Street, Singapore
 - **Getting here:**
   - Gateway Central MRT (interchange) – 3 min sheltered walk
   - Example Quay MRT – 7 min walk
@@ -386,7 +395,7 @@ Slots P3–P7 are each used twice (hotspot popup + gallery slide), so they need 
 | P3 – Lobby | Double-height, minimalist office lobby with reception/concierge; no signage | `modern office building lobby double height reception interior` | Landscape 16:9, ≥ 2000 px wide | Double-height lobby with concierge desk and lift lobby |
 | P4 – Typical floor | Open-plan, column-free office floor with daylight and city views; diverse staff optional | `open plan office floor column free city view asia` | Landscape 16:9, ≥ 2000 px wide | Column-free open-plan office floor with floor-to-ceiling windows |
 | P5 – Pantry & breakout | Contemporary office pantry/breakout with people chatting | `modern office pantry breakout area colleagues asia` | Landscape 16:9, ≥ 2000 px wide | Office pantry and breakout area with colleagues talking |
-| P6 – Sky terrace | Landscaped rooftop terrace with seating and tropical planting, generic city backdrop | `rooftop garden terrace office tropical plants city` | Landscape 16:9, ≥ 2000 px wide | Landscaped rooftop sky terrace with seating and tropical plants |
+| P6 – Sky terrace | Landscaped rooftop terrace with seating and tropical planting; generic or blurred city backdrop with no identifiable skyline or landmark | `rooftop garden terrace office tropical plants city` | Landscape 16:9, ≥ 2000 px wide | Landscaped rooftop sky terrace with seating and tropical plants |
 | P7 – End-of-trip | Bicycle parking room, or showers/lockers in a modern end-of-trip facility | `office bicycle parking end of trip facility lockers` | Landscape 16:9, ≥ 2000 px wide | End-of-trip facility with bicycle racks and lockers |
 | P8 – Gallery exterior | Generic office tower at dusk with lit floors (render), different angle from P1 | `modern office skyscraper dusk 3d render glass facade` | Landscape 16:9, ≥ 2000 px wide | Artist's impression of One Marina Gateway at dusk |
 | P9 – Map fallback | Stylised, fictional street map illustration (not a real city plan) | `abstract city street map vector illustration minimal` | Landscape 4:3, ≥ 1600 px wide | Illustrative location map placeholder |
@@ -407,12 +416,12 @@ Slots P3–P7 are each used twice (hotspot popup + gallery slide), so they need 
 - [ ] Tone and structure are consistent with the New Joiner Onboarding reference experience.
 - [ ] All nine sections are present in order (ten with the optional navigation).
 - [ ] Hero "View availability" scrolls to Current availability.
-- [ ] Spec grid shows all six tiles with the exact values and labels.
+- [ ] Spec grid shows all six tiles with the exact values and labels, and tile 4's label was typed manually as "BCA Green Mark rating".
 - [ ] All five hotspots open the correct popup (title, text, image); every popup closes; markers are tappable on mobile and none overlap. If the fallback was used, all five buttons work.
-- [ ] Location: travel times and amenities lists are complete; the map embed placeholder (or fallback image + "View on map" link) is present.
+- [ ] Location: intro and address line present; travel times and amenities lists are complete; the map embed placeholder (or fallback image + "View on map" link) is present.
 - [ ] Gallery: six slides with correct captions; arrows, dots and mobile swipe work; no autoplay.
-- [ ] Availability table: six rows match the sample content, the total reads 77,200 sq ft, and the "as at" note is present. It is readable on mobile (stacked cards or contained horizontal scroll).
-- [ ] Leasing team "Email" buttons open `mailto:` links; the registration/licence placeholders are present.
+- [ ] Availability table (or its text-block/card fallback): six rows match the sample content, the total reads 77,200 sq ft, and the "as at" note is present. It is readable on mobile (stacked cards or contained horizontal scroll).
+- [ ] Leasing team intro is present; "Email" buttons open `mailto:` links; the registration/licence placeholders are present.
 - [ ] All interactions were tested in preview on **desktop and mobile**: hotspots and popups, carousel, anchor links, table links, buttons, and nav if added.
 - [ ] Mobile: no overlapping or cut-off text and no page-level horizontal scroll.
 - [ ] The **disclaimer placeholder** and the image disclaimer are present and visible in the footer.

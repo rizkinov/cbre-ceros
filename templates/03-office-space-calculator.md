@@ -10,7 +10,7 @@
 
 ## Purpose
 
-This is a lead-generation calculator for CBRE Singapore's Advisory & Transaction Services team. Prospective occupiers enter headcount, work style, attendance, collaboration intensity and growth. They get recommended workstations, an estimated net lettable area (NLA) and an indicative monthly rent range, followed by a "Speak to an advisor" call to action. A&T marketing and advisors duplicate it for campaigns, events and pitch follow-ups, replacing the sample rent band, copy, images and links. The formula and constants below are documented so that whoever duplicates it can edit them safely.
+This is a lead-generation calculator for CBRE Singapore's Advisory & Transaction Services team: prospective occupiers enter headcount, work style, attendance, collaboration intensity and growth, and get recommended workstations, an estimated net lettable area (NLA) and an indicative monthly rent range, followed by a "Speak to an advisor" call to action. A&T marketing and advisors duplicate it for campaigns, events and pitch follow-ups, replacing the sample rent band, copy, images and links. The formula and constants below are documented so that whoever duplicates it can edit them safely.
 
 ## Ceros AI prompt
 
@@ -39,7 +39,7 @@ Results (whole numbers): Planning headcount, Recommended workstations, Suggested
 
 ## Expected structure
 
-After generation, check that the experience contains these sections in this order. The section numbers match the prompt.
+After generation **and** the refinement prompts, check that the experience contains these sections in this order. The section numbers match the prompt. Some details (hero eyebrow, helper text, desk-ratio sub-label, NLA caption, rent-basis note, advisor card, secondary button, assumptions date, IMG-02) only arrive with the refinement prompts, so don't expect them after the first pass. Component names are a guide: if the New Joiner Onboarding reference in the same folder uses an equivalent component (for example cards instead of tiles), match the reference.
 
 1. **Hero.** Full-width hero banner with eyebrow, headline, subhead, primary button and image slot IMG-01. *Interaction:* "Start calculating" scrolls or anchors to section 3 on desktop and mobile.
 2. **How it works.** Three step cards (number or icon, title, one-line description). They are static and sit three across on desktop, stacked on mobile.
@@ -180,6 +180,7 @@ Set the work style buttons to values Traditional = 0, Hybrid = 1, Agile = 2 (cal
 | Hero subhead | Estimate workstations, floor area and an indicative rent range for your next Singapore office in under two minutes. | 1 Hero | |
 | Hero button label | Start calculating | 1 Hero | Must still anchor to section 3. |
 | Hero image + alt | IMG-01 | 1 Hero | See Image slots. |
+| Section heading | How it works | 2 How it works | |
 | Step 1 title / text | Tell us about your team / Enter today's headcount and how much you expect to grow over the next three years. | 2 How it works | |
 | Step 2 title / text | Choose how you work / Select your work style, typical office attendance and how much your teams collaborate. | 2 How it works | |
 | Step 3 title / text | See your space and rent range / Get recommended workstations, an estimated net lettable area (NLA) and an indicative monthly rent range. | 2 How it works | |
@@ -202,15 +203,20 @@ Set the work style buttons to values Traditional = 0, Hybrid = 1, Agile = 2 (cal
 | Rent band low | S$9.00 psf/mth | 3 / 5 | **Sample, fictional.** Replace with current CBRE Research-approved figures and the date. |
 | Rent band high | S$13.00 psf/mth | 3 / 5 | **Sample, fictional.** As above. |
 | Rent basis note | Based on a sample rent band of S$9.00–S$13.00 psf per month (gross, excl. GST, fit-out and utilities). | 3 Calculator | Keep it consistent with the rent band values. |
+| "Calculate" button label (fallback only) | Calculate | 3 Calculator | Only if live updating isn't supported. |
+| Mobile summary bar labels (optional) | NLA · Monthly rent | 3 Calculator | Only if the sticky summary bar from refinement prompt 9 is supported. |
+| "Adjust assumptions" panel (optional) | Adjust assumptions · Rent band low (S$ psf/mth) 9.00 · Rent band high (S$ psf/mth) 13.00 · step 0.50, min 3, max 30 | 3 Calculator | Only if refinement prompt 11 is used. Defaults must equal the rent band rows above. |
 | Output labels | Planning headcount (incl. growth) · Recommended workstations · Suggested meeting rooms · Estimated net lettable area (NLA) · Space per person · Indicative monthly rent · Indicative annual rent | 3 Calculator | |
 | Output formats | "180 people" · "122" · "10" · "14,872 sq ft" · "83 sq ft per person" · "S$134k – S$193k" · "S$1.61M – S$2.32M" | 3 Calculator | Values shown are the defaults. |
 | Desk ratio sub-label | Desk ratio: 0.68 per person | 3 Calculator | Shows D to 2 decimals. |
 | NLA formula caption | NLA = workstations × (workpoint area + collaboration area) × 1.35 | 3 Calculator | |
 | Chart title | Where your space goes | 4 Chart | |
 | Chart segment labels | Workpoints · Meeting & collaboration · Support & amenities · Circulation | 4 Chart | |
+| Chart fallback label | Example: default inputs | 4 Chart | Only if the chart can't bind to live values. |
 | Chart note | Support and circulation are fixed at 15% and 20% of usable area in this model. | 4 Chart | |
 | Accordion title | How we calculate this | 5 Accordion | |
 | Accordion item titles | The formula in five steps · Work style assumptions · Collaboration assumptions · Support, amenities and circulation · Rent band · Worked example | 5 Accordion | |
+| Accordion item bodies 1–5 | See Sample content, section 5 | 5 Accordion | Must stay consistent with the constants, factors and rent band above. |
 | Worked example | 150 / Hybrid / 60% / Medium / 20% → 14,872 sq ft, S$134k–S$193k per month | 5 Accordion | Must match the default inputs and outputs. |
 | Accordion image + alt | IMG-02 | 5 Accordion | |
 | CTA headline | Turn your estimate into a workplace plan | 6 Advisor CTA | |
@@ -356,8 +362,9 @@ Rounding rules: never round intermediate values; round only on display. Whole nu
 | 3 | 400 / Agile / 55% / High / 10% | 440 | 242 | 30 (30.25) | 35,937 | 82 | S$323k – S$467k | S$3.88M – S$5.61M |
 | 4 (minimum) | 10 / Traditional / any / Low / 0% | 10 | 10 | 1 (0.625) | 1,013 (1,012.5) | 101 | S$9k – S$13k | S$0.11M – S$0.16M |
 | 5 (maximum) | 1,000 / Traditional / any / High / 50% | 1,500 | 1,500 | 188 (187.5) | 192,375 | 128 | S$1,731k – S$2,501k | S$20.78M – S$30.01M |
+| 6 (smallest Agile) | 10 / Agile / 40% / Low / 0% | 10 | 4 | 0 (0.25) | 486 | 49 (48.6) | S$4k – S$6k | S$0.05M – S$0.08M |
 
-Test 2 check: with Traditional selected, moving attendance anywhere from 40% to 100% must leave every output unchanged. For the .5 values in tests 4 and 5, a display that rounds half-down (for example 1,012 or 187) is acceptable. Note which way Ceros rounds in the QA log.
+Test 2 check: with Traditional selected, moving attendance anywhere from 40% to 100% must leave every output unchanged. For the .5 values in tests 4 and 5, a display that rounds half-down (for example 1,012 or 187) is acceptable. Note which way Ceros rounds in the QA log. Test 6 shows 0 meeting rooms for a very small, highly shared team. That is acceptable for the template; if Ceros supports a minimum (MAX) function, you may display at least 1 room, but don't add conditional logic just for this.
 
 **Single-value fallback** (only needed if a button option can carry just one value; see refinement prompt 12). Use S = 0/1/2 for Traditional/Hybrid/Agile and L = 0/1/2 for Low/Medium/High:
 - k = 1.1 × S − 0.3 × S² → 0 / 0.8 / 1.0
@@ -408,7 +415,7 @@ The step icons in section 2 come from Ceros's own icon set and are not stock slo
 - [ ] All seven sections are present in the order listed under Expected structure.
 - [ ] The hero button scrolls to the calculator in desktop and mobile preview.
 - [ ] Each slider has the correct range, step and default and shows its current value. Each button group has the correct options and default.
-- [ ] Test cases 1–5 produce the expected outputs in desktop **and** mobile preview.
+- [ ] Test cases 1–6 produce the expected outputs in desktop **and** mobile preview.
 - [ ] With Traditional selected, the attendance slider has no effect on any output.
 - [ ] No input combination produces blank, NaN, negative or "Infinity" values (try every extreme of every slider).
 - [ ] The breakdown chart updates with the inputs and its default values match section 4, or the documented fallback is in place and labelled "Example: default inputs".
