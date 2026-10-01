@@ -63,7 +63,15 @@ def main(manifest_path):
     os.makedirs(os.path.join(out_dir, 'sections'), exist_ok=True)
     pdf_pages = []
     for p in m['pages']:
-        img = Image.open(p['png']).convert('RGBA')
+        if p.get('parts'):  # very tall pages: per-section PNGs stitched in order (Figma drops >~8k px screenshots)
+            parts = [Image.open(x['png']).convert('RGBA') for x in p['parts']]
+            img = Image.new('RGBA', (max(x.width for x in parts), sum(x.height for x in parts)), (255, 255, 255, 255))
+            y = 0; secs = []
+            for x, meta in zip(parts, p['parts']):
+                img.paste(x, (0, y)); secs.append({'name': meta['name'], 'y': y, 'h': x.height}); y += x.height
+            p = dict(p, sections=secs)
+        else:
+            img = Image.open(p['png']).convert('RGBA')
         save_pair(img, os.path.join(out_dir, f"{base}_{p['label']}"))
         secs = p.get('sections')
         if secs:
